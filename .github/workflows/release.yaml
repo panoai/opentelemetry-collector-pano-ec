@@ -8,10 +8,6 @@ on:
 
 jobs:
   release:
-    strategy:
-      matrix:
-        GOOS: [linux]
-        GOARCH: [amd64]
     runs-on: ubuntu-20.04
 
     steps:
@@ -21,14 +17,17 @@ jobs:
 
       - uses: actions/setup-go@v5
         with:
-          go-version: '~1.17.13'
+          go-version: '1.20'
 
       - shell: bash
         run: |
-          GO111MODULE=on go install go.opentelemetry.io/collector/cmd/builder@v0.57.2
-          builder --config=otelcol-builder.yaml --name=otelcol-pano-ec_${{ matrix.GOOS }}_${{ matrix.GOARCH }}
+          GO111MODULE=on go install go.opentelemetry.io/collector/cmd/builder@0.94.0
+
+          # Static linking
+          export CGO_ENABLED=0
+          builder --config=otelcol-builder.yaml --name=otelcol-pano-ec
 
       - uses: actions/upload-artifact@v4
         with:
           name: all-artifacts
-          path: dist/otelcol-pano-ec*
+          path: dist/otelcol-pano-ec
