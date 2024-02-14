@@ -21,7 +21,7 @@ jobs:
 
       - shell: bash
         run: |
-          GO111MODULE=on go install go.opentelemetry.io/collector/cmd/builder@0.94.0
+          GO111MODULE=on go install go.opentelemetry.io/collector/cmd/builder@v0.37.0
 
           # Static linking
           export CGO_ENABLED=0
