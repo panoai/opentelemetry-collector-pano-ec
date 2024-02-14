@@ -5,7 +5,7 @@ This project builds a customized version of the OpenTelemetry Collector with sup
 ## Build
 
 ```
-$ GO111MODULE=on go install go.opentelemetry.io/collector/cmd/builder@v0.37.0
+$ GO111MODULE=on go install go.opentelemetry.io/collector/cmd/builder@v0.94.0
 $ builder --config=otelcol-builder.yaml
 ```
 
