@@ -1,0 +1,21 @@
+dist:
+  module: github.com/panoai/opentelemetry-collector-pano-ec
+  name: otelcol-pano-ec
+  description: "Custom OpenTelemetry Collector for the Pano.ai Edge Computer"
+  otelcol_version: "0.57.2"
+  output_path: "./dist"
+  version: "1.0.0"
+  go: "/usr/bin/go"
+exporters:
+  - gomod: "github.com/open-telemetry/opentelemetry-collector-contrib/exporter/googlemanagedprometheusexporter v0.57.2"
+  - gomod: "github.com/open-telemetry/opentelemetry-collector-contrib/exporter/googlecloudexporter v0.57.2"
+  - import: go.opentelemetry.io/collector/exporter/loggingexporter
+    gomod: go.opentelemetry.io/collector v0.57.2
+
+receivers:
+  - import: go.opentelemetry.io/collector/receiver/otlpreceiver
+    gomod: go.opentelemetry.io/collector v0.57.2
+
+processors:
+  - import: go.opentelemetry.io/collector/processor/batchprocessor
+    gomod: go.opentelemetry.io/collector v0.57.2
