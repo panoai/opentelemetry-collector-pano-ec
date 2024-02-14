@@ -1,24 +1,35 @@
 dist:
   module: github.com/panoai/opentelemetry-collector-pano-ec
   name: otelcol-pano-ec
-  description: "Custom OpenTelemetry Collector for the Pano.ai Edge Computer"
-  otelcol_version: "0.94.0"
-  output_path: "./dist"
-  version: "1.0.0"
-  go: "/usr/bin/go"
+  description: Custom OpenTelemetry Collector for the Pano.ai Edge Computer
+  otelcol_version: 0.94.0
+  output_path: ./dist
+  version: 1.0.0
 
 exporters:
-  - gomod: "github.com/open-telemetry/opentelemetry-collector-contrib/exporter/googlemanagedprometheusexporter v0.94.0"
-  - gomod: "github.com/open-telemetry/opentelemetry-collector-contrib/exporter/googlecloudexporter v0.94.0"
+  - gomod: github.com/open-telemetry/opentelemetry-collector-contrib/exporter/googlemanagedprometheusexporter v0.94.0
+  - gomod: github.com/open-telemetry/opentelemetry-collector-contrib/exporter/googlecloudexporter v0.94.0
+  - import: go.opentelemetry.io/collector/exporter/debugexporter
+    gomod: go.opentelemetry.io/collector v0.94.0
   - import: go.opentelemetry.io/collector/exporter/loggingexporter
     gomod: go.opentelemetry.io/collector v0.94.0
 
 receivers:
+  - gomod: github.com/open-telemetry/opentelemetry-collector-contrib/receiver/filelogreceiver v0.94.0
+  - gomod: github.com/open-telemetry/opentelemetry-collector-contrib/receiver/hostmetricsreceiver v0.94.0
   - import: go.opentelemetry.io/collector/receiver/otlpreceiver
     gomod: go.opentelemetry.io/collector v0.94.0
 
 processors:
+  - gomod: github.com/open-telemetry/opentelemetry-collector-contrib/processor/attributesprocessor v0.94.0
+  - gomod: github.com/open-telemetry/opentelemetry-collector-contrib/processor/resourcedetectionprocessor v0.94.0
+  - gomod: github.com/open-telemetry/opentelemetry-collector-contrib/processor/resourceprocessor v0.94.0
+  - gomod: github.com/open-telemetry/opentelemetry-collector-contrib/processor/spanprocessor v0.94.0
+  - gomod: github.com/open-telemetry/opentelemetry-collector-contrib/processor/filterprocessor v0.94.0
   - import: go.opentelemetry.io/collector/processor/batchprocessor
     gomod: go.opentelemetry.io/collector v0.94.0
   - import: go.opentelemetry.io/collector/processor/memorylimiterprocessor
     gomod: go.opentelemetry.io/collector v0.94.0
+
+connectors:
+  - gomod: go.opentelemetry.io/collector/connector/forwardconnector v0.94.0
