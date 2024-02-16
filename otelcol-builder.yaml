@@ -35,4 +35,4 @@ connectors:
   - gomod: go.opentelemetry.io/collector/connector/forwardconnector v0.94.0
 
 extensions:
-  - gomod: github.com/open-telemetry/opentelemetry-collector-contrib/extension/storage/filestorage v0.94.0
+  - gomod: github.com/open-telemetry/opentelemetry-collector-contrib/extension/storage v0.94.0
