@@ -36,3 +36,4 @@ connectors:
 
 extensions:
   - gomod: github.com/open-telemetry/opentelemetry-collector-contrib/extension/storage v0.94.0
+    import: github.com/open-telemetry/opentelemetry-collector-contrib/extension/storage/filestorage
